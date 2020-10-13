@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const helmet = require("helmet");
 
 const movieRoutes = require("./routes/movie");
 const personRoutes = require("./routes/person");
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 app.use(movieRoutes);
 app.use(personRoutes);
 app.use(searchRoutes);
+app.use(helmet());
 
 app.use((error, req, res, next) => {
   // console.log(error.response);
@@ -36,6 +38,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("SEG server is up and running on 8080 🏃🏃");
 });
