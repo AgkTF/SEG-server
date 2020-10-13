@@ -16,6 +16,8 @@ app.use((req, res, next) => {
 });
 
 app.use(movieRoutes);
+app.use(personRoutes);
+app.use(searchRoutes);
 
 app.use((error, req, res, next) => {
   // console.log(error.response);
