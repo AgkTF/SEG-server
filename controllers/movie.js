@@ -30,7 +30,7 @@ exports.getUpcoming = (req, res, next) => {
 
 exports.getTmdbMovie = (req, res, next) => {
   let movie_id = req.params.id;
-  let url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMBD_KEY}&language=en%2Cnull&append_to_response=credits%2Csimilar%2Cimages`;
+  let url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.TMBD_KEY}&language=en-US&append_to_response=credits%2Csimilar%2Cimages&include_image_language=en%2Cnull`;
   axios
     .get(url)
     .then((response) => {
