@@ -7,7 +7,7 @@ exports.getPerson = (req, res, next) => {
   axios
     .get(url)
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.status(200).json({
         person: response.data,
       });

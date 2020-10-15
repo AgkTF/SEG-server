@@ -34,7 +34,7 @@ exports.getTmdbMovie = (req, res, next) => {
   axios
     .get(url)
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.status(200).json({
         movieDetails: response.data,
       });
@@ -69,6 +69,24 @@ exports.getOmdbMovieByTitle = (req, res, next) => {
     .then((response) => {
       res.status(200).json({
         movieDetails: response.data,
+      });
+    })
+    .catch((error) => {
+      next(error);
+    });
+};
+
+exports.getSimilar = (req, res, next) => {
+  let movie_id = req.params.id;
+  let page = req.query.page;
+
+  let url = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${process.env.TMBD_KEY}&language=en-US&page=${page}`;
+  axios
+    .get(url)
+    .then((response) => {
+      res.status(200).json({
+        similar: response.data.results,
+        total_pages: response.data.total_pages,
       });
     })
     .catch((error) => {
